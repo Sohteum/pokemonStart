@@ -5,9 +5,8 @@ import {
   createBrowserRouter,
   RouterProvider,
 } from "react-router-dom";
-import "./css/style.css" ;
+import "./style.css" ;
 import PokemonDetails from './components/PokemonDetails';
-import Login from './components/Login';
 
 
 const router = createBrowserRouter([
@@ -16,12 +15,8 @@ const router = createBrowserRouter([
     element: <App />,
   },
   {
-    path: "/Details",
+    path: ":PokemonDetails",
     element: <PokemonDetails  />,
-  },
-  {
-    path: "/login",
-    element: <Login  />,
   },
 
 ],

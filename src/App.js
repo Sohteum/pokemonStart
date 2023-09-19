@@ -1,23 +1,18 @@
-import React, { createContext, useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import PokemonThumb from './components/PokemonThumb'
-import { useNavigate } from 'react-router-dom'
 
-export const AppContext = createContext()
 
 const App = () => {
 
-const navigate = useNavigate()
-
   const [allPokemons, setAllPokemons] = useState([])
   const [loadMore, setLoadMore] = useState('https://pokeapi.co/api/v2/pokemon?limit=20')
-  const [IsLogged, setIsLogged] = useState()
+  const [IsLogged, setIsLogged] = useState
 
   const getAllPokemons = async () => {
     const res = await fetch(loadMore)
     const data = await res.json()
 
     setLoadMore(data.next)
-
 
     function createPokemonObject(results) {
       results.forEach(async pokemon => {
@@ -37,12 +32,8 @@ const navigate = useNavigate()
 
 
   return (
-    <AppContext.Provider value={{
-      IsLogged,setIsLogged}}>
     <div className="app-contaner">
       <h1>Pokemon Evolution</h1>
-      <span onClick={()=>{navigate('/login')}}>Login</span>
-      <span>Logout</span>
       <div className="pokemon-container">
         <div className="all-container" allPokemons={allPokemons}>
           {allPokemons.map((pokemonStats, index) =>
@@ -58,7 +49,6 @@ const navigate = useNavigate()
         <button className="load-more" onClick={() => getAllPokemons()}>Load more</button>
       </div>
     </div>
-    </AppContext.Provider>
   );
 }
 
